@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { routes } from "./seoRoutes.js";
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxtseo/module", "@nuxtjs/i18n"],
@@ -13,8 +15,8 @@ export default defineNuxtConfig({
     cacheTtl: 5 * 60 * 60 * 1000, // 5 hours
     autoI18n: true
   },
-  robots:{
-    groups:[
+  robots: {
+    groups: [
       {
         userAgent: "*",
         allow: "/",
@@ -33,5 +35,12 @@ export default defineNuxtConfig({
       }
     ],
     vueI18n: './i18n.config.ts'
-  }
+  },
+  hooks: {
+    'pages:extend': (pages) => {
+      routes.map((route) => {
+        pages.push(route)
+      })
+    }
+  },
 })

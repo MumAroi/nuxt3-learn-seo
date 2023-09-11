@@ -10,6 +10,6 @@ useSchemaOrg([
 
 <template>
   <div>
-    Hello Quick Setup
+    Hello Schema ORG
   </div>
 </template>
