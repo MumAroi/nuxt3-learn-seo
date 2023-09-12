@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { locale } = useI18n()
 </script>
 
@@ -7,8 +7,8 @@ const { locale } = useI18n()
     Hello i18n
     <form>
       <select v-model="locale">
-        <option value="living_en">en</option>
         <option value="living_th">th</option>
+        <option value="living_en">en</option>
       </select>
       <p>{{ $t('welcome') }}</p>
     </form>

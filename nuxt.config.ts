@@ -1,9 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { routes } from "./seoRoutes.js";
+import { resolve } from 'pathe'
+// import i18nseoRoute from './i18n-seo-route.js'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtseo/module", "@nuxtjs/i18n"],
+  modules: [
+    "@nuxtjs/i18n",
+    "@nuxtseo/module",
+    // i18nseoRoute
+  ],
   site: {
     url: "http://localhost:3000",
     logo: "/logo.png",
@@ -34,12 +40,15 @@ export default defineNuxtConfig({
         iso: 'th-TH',
       }
     ],
-    vueI18n: './i18n.config.ts'
+    // vueI18n: './i18n.config.ts'
   },
   hooks: {
     'pages:extend': (pages) => {
       routes.map((route) => {
-        pages.push(route)
+        pages.push({
+          ...route,
+          file: resolve(__dirname, route.file),
+        })
       })
     }
   },
